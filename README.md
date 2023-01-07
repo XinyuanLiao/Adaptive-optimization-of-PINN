@@ -1,4 +1,4 @@
-# PINN-with-adaptive-loss-function-and-adaptive-activation-funtion
+# Optimizing PINN using Multi-task Likelihood Loss Balance Algorithm and Adaptive Activation Function
 This repository is used to reproduce PINN's inverse problem code about Burgers equation, plus multi-task likelihood loss balance algorithm and adaptive activation function algorithm.
 
 These frameworks and algorithms are derived from the following papers:
