@@ -198,7 +198,7 @@ if __name__ == "__main__":
     nu = 0.01 / np.pi
     layers = [2, 20, 20, 20, 20, 20, 20, 1]
 
-     data = scipy.io.loadmat('./Data/burgers_shock.mat')
+     data = scipy.io.loadmat('./burgers_shock.mat')
     
     t = data['t'].flatten()[:,None]
     x = data['x'].flatten()[:,None]
