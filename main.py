@@ -4,7 +4,6 @@ import tensorflow as tf
 import numpy as np
 import time
 import matplotlib.pyplot as plt
-import Dao
 import os
 
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
@@ -199,12 +198,16 @@ if __name__ == "__main__":
     nu = 0.01 / np.pi
     layers = [2, 20, 20, 20, 20, 20, 20, 1]
 
-    sql_domain = "select x,t,usol from burgers order by t,x"
-    result_domain = Dao.loadSql(sql_domain)
-    X_star = np.array(result_domain)[:, 0:2]
-    u_star = np.array(result_domain)[:, -1]
-    u_star = [u_star]
-    u_star = np.array(u_star).T
+     data = scipy.io.loadmat('./Data/burgers_shock.mat')
+    
+    t = data['t'].flatten()[:,None]
+    x = data['x'].flatten()[:,None]
+    Exact = np.real(data['usol']).T
+    
+    X, T = np.meshgrid(x,t)
+    
+    X_star = np.hstack((X.flatten()[:,None], T.flatten()[:,None]))
+    u_star = Exact.flatten()[:,None]              
 
     lb = X_star.min(0)
     ub = X_star.max(0)
