@@ -1,0 +1,1 @@
+# PINN-with-adaptive-loss-function-and-adaptive-activation-funtion
