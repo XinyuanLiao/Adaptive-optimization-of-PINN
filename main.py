@@ -10,9 +10,9 @@ import os
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 
 fig = plt.figure()
-ax1 = fig.add_subplot(3, 1, 1)  # 画3行1列个图形的第1个
-ax2 = fig.add_subplot(3, 1, 2)  # 画3行1列个图形的第2个
-ax3 = fig.add_subplot(3, 1, 3)  # 画3行1列个图形的第3个
+ax1 = fig.add_subplot(3, 1, 1)
+ax2 = fig.add_subplot(3, 1, 2)
+ax3 = fig.add_subplot(3, 1, 3)  
 ax1.set_xlabel('its')
 ax2.set_xlabel('its')
 ax3.set_xlabel('its')
@@ -29,10 +29,6 @@ class PhysicsInformedNN:
     it = 0
 
     def __init__(self, X, u, layers, lb, ub):
-
-        # scale factor n
-        self.n = tf.constant([1.])
-
         self.lb = lb
         self.ub = ub
 
@@ -52,8 +48,11 @@ class PhysicsInformedNN:
         # Initialize parameters
         self.lambda_1 = tf.Variable([0.0], dtype=tf.float32)
         self.lambda_2 = tf.Variable([-6.0], dtype=tf.float32)
+        
         # hyper-parameter a
         # adaptive activation parameter
+        # scale factor n
+        self.n = tf.constant([1.])
         self.a = tf.constant([1], dtype=tf.float32)
 
         self.x_tf = tf.placeholder(tf.float32, shape=[None, self.x.shape[1]])
@@ -62,34 +61,34 @@ class PhysicsInformedNN:
 
         self.u_pred = self.net_u(self.x_tf, self.t_tf)
         self.f_pred = self.net_f(self.x_tf, self.t_tf)
-
+        
+        # trainable param for adaptive loss function
         self.σ1 = tf.Variable([0.0], dtype=tf.float32)
         self.σ2 = tf.Variable([0.0], dtype=tf.float32)
+        
+        # Parameters to be estimated
         self.l1 = tf.reduce_mean(tf.square(self.u_tf - self.u_pred))
         self.l2 = tf.reduce_mean(tf.square(self.f_pred))
+        
         self.loss1 = self.likelihood_loss()
         self.loss = self.true_loss()
 
         self.optimizer = tf.contrib.opt.ScipyOptimizerInterface(self.loss,
                                                                 method='L-BFGS-B',
-                                                                options={'maxiter': 50000,  # 最大迭代次数
-                                                                         'maxfun': 50000,  # 最大函数估计次数
+                                                                options={'maxiter': 50000, 
+                                                                         'maxfun': 50000, 
                                                                          'maxcor': 50,
-                                                                         'maxls': 50,  # 最大行搜索步骤数
-                                                                         'ftol': 1.0 * np.finfo(float).eps})  # 结束时间
+                                                                         'maxls': 50,  
+                                                                         'ftol': 1.0 * np.finfo(float).eps})  
 
         self.optimizer_Adam = tf.train.AdamOptimizer()
         self.train_op_Adam = self.optimizer_Adam.minimize(self.loss)
-        # 训练网络参数
         self.train_op_Adam1 = self.optimizer_Adam.minimize(self.loss1)
-        # 训练损失函数参数
-        # 自适应矩估计优化算法
 
         init = tf.global_variables_initializer()
         self.sess.run(init)
 
     def likelihood_loss(self):
-        # 不让loss1、2进入梯度里，不更新
         loss1 = tf.stop_gradient(self.l1)
         loss2 = tf.stop_gradient(self.l2)
         loss = tf.exp(-self.σ1) * loss1 + self.σ1 \
@@ -224,8 +223,6 @@ if __name__ == "__main__":
     lambda_1_value = model.sess.run(model.lambda_1)
     lambda_2_value = model.sess.run(model.lambda_2)
     lambda_2_value = np.exp(lambda_2_value)
-    result = Dao.insertLamda(
-        "update lamda set lamda1=" + str(lambda_1_value[0]) + ",lamda2=" + str(lambda_2_value[0]) + ";")
 
     error_lambda_1 = np.abs(lambda_1_value - 1.0) * 100
     error_lambda_2 = np.abs(lambda_2_value - nu) / nu * 100
@@ -237,5 +234,4 @@ if __name__ == "__main__":
     ax1.plot(data[0], data[1], c="red", label="loss")
     ax2.plot(data[0], data[2], c="blue", label="lamda_1")
     ax3.plot(data[0], data[3], c="green", label="lamda_2")
-    plt.savefig("C://Program Files/Apache Software Foundation/Tomcat 8.5/webapps/webserver/imgs/burgers.png")
     plt.show()
