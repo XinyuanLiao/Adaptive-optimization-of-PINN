@@ -1,4 +1,4 @@
-# Adaptive optimization of PINN
+# Adaptive optimization of Physics-Informed NN
 This repository is used to reproduce PINN's inverse problem code about Burgers equation, plus multi-task likelihood loss balance algorithm and adaptive activation function algorithm.
 
 These frameworks and algorithms are derived from the following papers:
