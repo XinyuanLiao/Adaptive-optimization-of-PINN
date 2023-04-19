@@ -10,5 +10,5 @@ These frameworks and algorithms are derived from the following papers:
 >Jagtap A D, Kawaguchi K, Karniadakis G E. Adaptive activation functions accelerate convergence in deep and Physics-informed neural Networks[J]. Journal of Computational Physics, 2020, 404: 109136.
 
 ## Requirements
-*python-3.7  
-*tensorflow-1.15.2
+* python-3.7  
+* tensorflow-1.15.2
