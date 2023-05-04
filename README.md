@@ -1,11 +1,11 @@
-# Adaptive optimization of Physics-Informed NN
-This repository is used to reproduce PINN's inverse problem code about Burgers equation, plus multi-task likelihood loss balance algorithm and adaptive activation function algorithm.
+![GitHub watchers](https://img.shields.io/github/watchers/XinyuanLiao/Adaptive-optimization-of-PINN?style=social)
+![GitHub Repo stars](https://img.shields.io/github/stars/XinyuanLiao/Adaptive-optimization-of-PINN?style=social)
 
 ![SourceForge Platform](https://img.shields.io/sourceforge/platform/python?color=python&label=python&logo=python)
 
-![GitHub watchers](https://img.shields.io/github/watchers/XinyuanLiao/Adaptive-optimization-of-PINN?style=social)
-![GitHub Repo stars](https://img.shields.io/github/stars/XinyuanLiao/Adaptive-optimization-of-PINN?style=social)
-![GitHub all releases](https://img.shields.io/github/downloads/XinyuanLiao/Adaptive-optimization-of-PINN/total?style=social)
+# Adaptive optimization of Physics-Informed NN
+This repository is used to reproduce PINN's inverse problem code about Burgers equation, plus multi-task likelihood loss balance algorithm and adaptive activation function algorithm.
+
 
 [![](https://img.shields.io/badge/Zhihu-Blog-blue.svg)](https://www.zhihu.com/question/375794498/answer/2664899074)
 
