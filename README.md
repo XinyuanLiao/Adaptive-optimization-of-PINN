@@ -1,5 +1,4 @@
-![GitHub watchers](https://img.shields.io/github/watchers/XinyuanLiao/Adaptive-optimization-of-PINN?style=social)
-![GitHub Repo stars](https://img.shields.io/github/stars/XinyuanLiao/Adaptive-optimization-of-PINN?style=social)
+
 ![SourceForge Platform](https://img.shields.io/sourceforge/platform/python?color=python&label=python&logo=python)
 
 # Adaptive optimization of Physics-Informed NN
