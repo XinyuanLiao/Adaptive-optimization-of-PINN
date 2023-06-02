@@ -1,11 +1,10 @@
 
 ![SourceForge Platform](https://img.shields.io/sourceforge/platform/python?color=python&label=python&logo=python)
+[![](https://img.shields.io/badge/Zhihu-Blog-blue.svg)](https://www.zhihu.com/question/375794498/answer/2664899074)
+![](https://img.shields.io/hexpm/l/plug)
 
 # Adaptive optimization of Physics-Informed NN
 This repository is used to reproduce PINN's inverse problem code about Burgers equation, plus multi-task likelihood loss balance algorithm and adaptive activation function algorithm.
-
-
-[![](https://img.shields.io/badge/Zhihu-Blog-blue.svg)](https://www.zhihu.com/question/375794498/answer/2664899074)
 
 ## Citation
 These frameworks and algorithms are derived from the following papers:
